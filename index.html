@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+  <button onClick="getRequestToken()" class="btn">get request token</button>
+</body>
+
+</html>
+<script type="application/javascript">
+  var store = {
+
+  };
+
+  var postData = {
+    oauth_callback: 'http%3A%2F%2Flocalhost%3A8000'
+  }
+
+  var getRequestToken = function () {
+    $.ajax({
+      type: 'POST',
+      beforeSend: function (request) {
+        request.setRequestHeader("oauth_consumer_key", "Vbq4Mu1pjI1ebZbewZSJ4tMzh")
+      },
+      url: 'https://api.twitter.com/oauth/request_token',
+      data: postData,
+      success: function (msg) {
+        console.log('success', msg)
+      },
+      error: function (error) {
+        console.log('error', error)
+      }
+    })
+
+
+
+
+    $.ajax('https://api.twitter.com/oauth/request_token',
+      postData, function (data, status) {
+        console.log('data', data);
+        console.log('status', status);
+      });
+  };
+
+</script>
